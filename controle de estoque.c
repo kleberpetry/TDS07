@@ -8,10 +8,39 @@ struct produto{
 	int estoque;
 };
 struct produto produtos[200];
+int sequencia=0;
 
 cadastrarProduto(){
+	system("cls");
+	produtos[sequencia].codigo=sequencia+1;
+	printf("\nDigite o nome do produto: ");
+	fflush(stdin);
+	gets(produtos[sequencia].nome);
+	printf("\nDigite o valor unitário: ");
+	scanf("%lf",&produtos[sequencia].valorUnitario);
+	fflush(stdin);
+	printf("\nDigite a quantidade do estoque inicial: ");
+	scanf("%d",&produtos[sequencia].estoque);
+	system("cls");
+	printf("\nConfira o cadastro");
+	printf("\nCódigo: %d",produtos[sequencia].codigo);
+	printf("\nNome: %s",produtos[sequencia].nome);
+	printf("\nValor unitário: %0.2lf",produtos[sequencia].valorUnitario);
+	printf("\nEstoque: %d\n",produtos[sequencia].estoque);
 	
+	sequencia++;
+	system("pause");
 }
+
+/*	int codigo;
+	char nome[50];
+	double valorUnitario;
+	int estoque;*/
+
+
+
+
+
 
 
 main(){
@@ -22,7 +51,7 @@ main(){
 	scanf("%d",&x);
 	switch(x){
 		case 1:
-			//cadastrarProduto();
+			cadastrarProduto();
 		break;
 		case 2:
 			//entradaEstoque();
@@ -34,7 +63,7 @@ main(){
 			//listarProdutos();
 		break;
 		case 5:
-			//buscaProduto();
+			//buscarProduto();
 		break;
 		default:
 			printf("\nOpção inválida\n");

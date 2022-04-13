@@ -27,15 +27,24 @@ cadastrarProduto(){
 	printf("\nNome: %s",produtos[sequencia].nome);
 	printf("\nValor unitário: %0.2lf",produtos[sequencia].valorUnitario);
 	printf("\nEstoque: %d\n",produtos[sequencia].estoque);
-	
 	sequencia++;
 	system("pause");
 }
+listarProdutos(){
+	int x;
+	if(produtos[0].codigo>0){
+		for(x=0;x<sequencia;x++){
+			
+			
+			
+		}
+	}else{
+		printf("\nNenhum projeto cadastrado\n");
+	}
+	
+	system("pause");
+}
 
-/*	int codigo;
-	char nome[50];
-	double valorUnitario;
-	int estoque;*/
 
 
 
@@ -60,7 +69,7 @@ main(){
 			//ajusteEstoque();
 		break;
 		case 4:
-			//listarProdutos();
+			listarProdutos();
 		break;
 		case 5:
 			//buscarProduto();

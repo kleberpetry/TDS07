@@ -31,12 +31,15 @@ cadastrarProduto(){
 	system("pause");
 }
 listarProdutos(){
+	system("cls");
 	int x;
 	if(produtos[0].codigo>0){
 		for(x=0;x<sequencia;x++){
-			
-			
-			
+			printf("\n______________________________\n");
+			printf("\nCódigo: %d",produtos[x].codigo);
+			printf("\nNome: %s",produtos[x].nome);
+			printf("\nValor unitário: %0.2lf",produtos[x].valorUnitario);
+			printf("\nEstoque: %d\n",produtos[x].estoque);
 		}
 	}else{
 		printf("\nNenhum projeto cadastrado\n");
@@ -55,27 +58,32 @@ listarProdutos(){
 main(){
 	setlocale(LC_ALL, "Portuguese");
 	int x;
-	system("cls");
-	printf("\nDigite 1 para cadastrar um produto\nDigite 2 para dar entrada em estoque\nDigite 3 para ajustar um estoque\nDigite 4 para listar todos os produtos\nDigite 5 para buscar um produto por codigo\nDigite sua opção: ");
-	scanf("%d",&x);
-	switch(x){
-		case 1:
-			cadastrarProduto();
-		break;
-		case 2:
-			//entradaEstoque();
-		break;
-		case 3:
-			//ajusteEstoque();
-		break;
-		case 4:
-			listarProdutos();
-		break;
-		case 5:
-			//buscarProduto();
-		break;
-		default:
-			printf("\nOpção inválida\n");
-	}
+	do{
+		system("cls");
+		printf("\nDigite 1 para cadastrar um produto\nDigite 2 para dar entrada em estoque\nDigite 3 para ajustar um estoque\nDigite 4 para ajustar o valor\nDigite 5 para listar todos os produtos\nDigite 6 para buscar um produto por codigo\nDigite sua opção: ");
+		scanf("%d",&x);
+		switch(x){
+			case 1:
+				cadastrarProduto();
+			break;
+			case 2:
+				//entradaEstoque();
+			break;
+			case 3:
+				//ajusteEstoque();
+			break;
+			case 4:
+				//ajusteValor();
+			break;
+			case 5:
+				listarProdutos();
+			break;
+			case 6:
+				//buscarProduto();
+			break;
+			default:
+				printf("\nOpção inválida\n");
+		}
+	}while(x!=0);
 	return 0;
 }

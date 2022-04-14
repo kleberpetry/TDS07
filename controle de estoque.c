@@ -59,7 +59,7 @@ entradaEstoque(){
 			printf("\nEstoque atual: %d\n\n",produtos[x].estoque);
 			printf("\nDigite a quantidade de entrada em estoque: ");
 			scanf("%d",&estoque);
-			produtos[x].estoque=estoque;
+			produtos[x].estoque+=estoque;
 			printf("\nEstoque atualizado com sucesso!\n");
 			printf("\nNovo valor do estoque: %d\n",produtos[x].estoque);
 			break;
@@ -67,7 +67,43 @@ entradaEstoque(){
 			printf("\nProduto não encontrado\n");
 		}
 	}
-	
+	system("pause");
+}
+ajusteEstoque(){
+	system("cls");
+	int codigo,x,estoque;
+	printf("\nDigite o código do produto para ajuste de estoque: ");
+	scanf("%d",&codigo);
+	for(x=0;x<sequencia;x++){
+		if(produtos[x].codigo==codigo){
+			printf("\nCódigo: %d",produtos[x].codigo);
+			printf("\nNome: %s",produtos[x].nome);
+			printf("\nEstoque atual: %d\n\n",produtos[x].estoque);
+			printf("\nDigite a quantidade para ajuste em estoque: ");
+			scanf("%d",&estoque);
+			produtos[x].estoque=estoque;
+			printf("\nEstoque ajustado com sucesso!\n");
+			printf("\nNovo valor do estoque: %d\n",produtos[x].estoque);
+			break;
+		}else{
+			printf("\nProduto não encontrado\n");
+		}
+	}
+	system("pause");
+}
+ajustarCadastro(){
+	system("cls");
+	int codigo,x,estoque;
+	printf("\nDigite o código do produto para inserção de estoque: ");
+	scanf("%d",&codigo);
+	for(x=0;x<sequencia;x++){
+		if(produtos[x].codigo==codigo){
+			
+			break;
+		}else{
+			printf("\nProduto não encontrado\n");
+		}
+	}
 	system("pause");
 }
 
@@ -84,10 +120,10 @@ main(){
 				cadastrarProduto();
 			break;
 			case 2:
-				//entradaEstoque();
+				entradaEstoque();
 			break;
 			case 3:
-				//ajusteEstoque();
+				ajusteEstoque();
 			break;
 			case 4:
 				//ajusteCadastro();

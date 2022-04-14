@@ -15,12 +15,12 @@ cadastrarProduto(){
 	produtos[sequencia].codigo=sequencia+1;
 	printf("\nDigite o nome do produto: ");
 	fflush(stdin);
-	gets(produtos[sequencia].nome);
+	gets(produtos[sequencia].nome);// serve exclusivamente para string
 	printf("\nDigite o valor unitário: ");
 	scanf("%lf",&produtos[sequencia].valorUnitario);
 	fflush(stdin);
 	printf("\nDigite a quantidade do estoque inicial: ");
-	scanf("%d",&produtos[sequencia].estoque);
+	scanf("%d",&produtos[sequencia].estoque);//serve para ambos
 	system("cls");
 	printf("\nConfira o cadastro");
 	printf("\nCódigo: %d",produtos[sequencia].codigo);
@@ -47,12 +47,29 @@ listarProdutos(){
 	
 	system("pause");
 }
-
-
-
-
-
-
+entradaEstoque(){
+	system("cls");
+	int codigo,x,estoque;
+	printf("\nDigite o código do produto para inserção de estoque: ");
+	scanf("%d",&codigo);
+	for(x=0;x<sequencia;x++){
+		if(produtos[x].codigo==codigo){
+			printf("\nCódigo: %d",produtos[x].codigo);
+			printf("\nNome: %s",produtos[x].nome);
+			printf("\nEstoque atual: %d\n\n",produtos[x].estoque);
+			printf("\nDigite a quantidade de entrada em estoque: ");
+			scanf("%d",&estoque);
+			produtos[x].estoque=estoque;
+			printf("\nEstoque atualizado com sucesso!\n");
+			printf("\nNovo valor do estoque: %d\n",produtos[x].estoque);
+			break;
+		}else{
+			printf("\nProduto não encontrado\n");
+		}
+	}
+	
+	system("pause");
+}
 
 
 main(){
@@ -73,7 +90,7 @@ main(){
 				//ajusteEstoque();
 			break;
 			case 4:
-				//ajusteValor();
+				//ajusteCadastro();
 			break;
 			case 5:
 				listarProdutos();

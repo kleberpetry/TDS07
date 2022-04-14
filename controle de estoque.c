@@ -116,7 +116,22 @@ ajusteCadastro(){
 }
 
 buscarProduto(){
-	
+	system("cls");
+	int x,codigo;
+	printf("\nDigite o codigo do produto que deseja: ");
+	scanf("%d",&codigo);
+	for(x=0;x<sequencia;x++){
+		if(produtos[x].codigo==codigo){
+			printf("\nCodigo: %d",produtos[x].codigo);
+			printf("\nNome: %s",produtos[x].nome);
+			printf("\nValor: %0.2lf",produtos[x].valorUnitario);
+			printf("\nEstoque: %d\n",produtos[x].estoque);
+			break;
+		}else{
+			printf("\nProduto não encontrado!\n");
+		}
+	}
+	system("pause");
 }
 
 

@@ -133,7 +133,37 @@ buscarProduto(){
 	}
 	system("pause");
 }
-
+venda(){
+	system("cls");
+	int codigo,x,qtde,continuar,achou;
+	double subtotal,total,valorUnitario;
+	do{
+		printf("\nDigite o código do produto: ");
+		scanf("%d",&codigo);
+		for(x=0;x<sequencia;x++){
+			if(produtos[x].codigo==codigo){
+				printf("\nCódigo: %d - Nome: %s - Valor Unitário: %0.2lf"
+				,produtos[x].codigo,produtos[x].nome,produtos[x].valorUnitario);
+				valorUnitario=produtos[x].valorUnitario;
+				achou=1:
+				break;
+			}else{
+				achou=0;
+			}
+		}
+		if(achou==0){
+			printf("\nProduto não encontrado\n");
+		}
+		printf("\nDigite a quantidade: ");
+		scanf("%d",&qtde);
+		subtotal=qtde*valorUnitario;
+		total+=subtotal;
+		printf("\nDeseja inserir mais algum produto: 1-sim 2-não:  ");
+		scanf("%d",&continuar);
+	}while(continuar!=2);
+	printf("\n o total da compra foi de %0.2lf\n",total);
+	system("pause");
+}
 
 main(){
 	setlocale(LC_ALL, "Portuguese");
@@ -160,6 +190,9 @@ main(){
 			break;
 			case 6:
 				buscarProduto();
+			break;
+			case 7:
+				venda();
 			break;
 			default:
 				printf("\nOpção inválida\n");

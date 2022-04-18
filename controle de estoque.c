@@ -145,7 +145,7 @@ venda(){
 				printf("\nCódigo: %d - Nome: %s - Valor Unitário: %0.2lf"
 				,produtos[x].codigo,produtos[x].nome,produtos[x].valorUnitario);
 				valorUnitario=produtos[x].valorUnitario;
-				achou=1:
+				achou=1;
 				break;
 			}else{
 				achou=0;

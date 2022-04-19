@@ -8,7 +8,8 @@ struct produto{
 	int estoque;
 };
 struct produto produtos[200];
-int sequencia=0;
+int sequencia=0,nvendas=0;
+double vendas[200];
 
 cadastrarProduto(){
 	system("cls");
@@ -45,6 +46,20 @@ listarProdutos(){
 		printf("\nNenhum projeto cadastrado\n");
 	}
 	
+	system("pause");
+}
+listarVendas(){
+	system("cls");
+	int x;
+	if(vendas[0]>0){
+		for(x=0;x<nvendas;x++){
+			printf("\n______________________________\n");
+			printf("\nVenda: %d",x+1);
+			printf("\nValor: %0.2lf\n",vendas[x]);
+		}
+	}else{
+		printf("\nNenhuma venda encontrada\n");
+	}
 	system("pause");
 }
 entradaEstoque(){
@@ -135,7 +150,7 @@ buscarProduto(){
 }
 venda(){
 	system("cls");
-	int codigo,x,qtde,continuar,achou;
+	int codigo,x,qtde,continuar,achou=0;
 	double subtotal,total;
 	do{
 		printf("\nDigite o código do produto: ");
@@ -152,21 +167,40 @@ venda(){
 		}
 		if(achou==0){
 			printf("\nProduto não encontrado\n");
-		}
-		printf("\nDigite a quantidade: ");
-		scanf("%d",&qtde);
-		if(produtos[x].estoque>0 && qtde<=produtos[x].estoque){
-			produtos[x].estoque-=qtde;
-			subtotal=qtde*produtos[x].valorUnitario;
-			total+=subtotal;
 		}else{
-			printf("\nSem produto em estoque\n");
+			printf("\nDigite a quantidade: ");
+			scanf("%d",&qtde);
+			if(produtos[x].estoque>0 && qtde<=produtos[x].estoque){
+				produtos[x].estoque-=qtde;
+				subtotal=qtde*produtos[x].valorUnitario;
+				total+=subtotal;
+			}else{
+				printf("\nSem produto em estoque\n");
+				system("pause");
+			return;
+			}
 		}
 		printf("\nDeseja inserir mais algum produto: 1-sim 2-não:  ");
 		scanf("%d",&continuar);
 	}while(continuar!=2);
-	printf("\n o total da compra foi de %0.2lf\n",total);
-	system("pause");
+	if(achou!=0){
+		printf("\n o total da compra foi de %0.2lf\n",total);
+		printf("\nForma de pagamento: ");
+		printf("\n1-dinheiro 2-credito: ");
+		int pag;
+		scanf("%d",&pag);
+		if(pag==1){
+			printf("\nPagamento em dinheiro, valor: R$%0.2lf\n",total);
+		}else if(pag==2){
+			total=total*1.03;
+			printf("\nPagamento em cartão, valor total com acrescimo de 3%%: R$%0.2lf\n",total);
+		}else{
+			printf("\nforma de pagamento inválida");
+		}
+		vendas[nvendas]=total;
+		nvendas++;
+		system("pause");
+	}
 }
 
 main(){
@@ -174,7 +208,7 @@ main(){
 	int x;
 	do{
 		system("cls");
-		printf("\nDigite 1 para cadastrar um produto\nDigite 2 para dar entrada em estoque\nDigite 3 para ajustar um estoque\nDigite 4 para ajustar o cadastro\nDigite 5 para listar todos os produtos\nDigite 6 para buscar um produto por codigo\nDigite sua opção: ");
+		printf("\nDigite 1 para cadastrar um produto\nDigite 2 para dar entrada em estoque\nDigite 3 para ajustar um estoque\nDigite 4 para ajustar o cadastro\nDigite 5 para listar todos os produtos\nDigite 6 para buscar um produto por codigo\nDigite 7 para realizar uma venda\nDigite sua opção: ");
 		scanf("%d",&x);
 		switch(x){
 			case 1:
@@ -197,6 +231,9 @@ main(){
 			break;
 			case 7:
 				venda();
+			break;
+			case 8:
+				listarVendas();
 			break;
 			default:
 				printf("\nOpção inválida\n");

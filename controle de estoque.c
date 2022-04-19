@@ -129,7 +129,6 @@ ajusteCadastro(){
 	}
 	system("pause");
 }
-
 buscarProduto(){
 	system("cls");
 	int x,codigo;
@@ -202,7 +201,6 @@ venda(){
 		system("pause");
 	}
 }
-
 main(){
 	setlocale(LC_ALL, "Portuguese");
 	int x;

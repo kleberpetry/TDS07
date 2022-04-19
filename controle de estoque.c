@@ -136,7 +136,7 @@ buscarProduto(){
 venda(){
 	system("cls");
 	int codigo,x,qtde,continuar,achou;
-	double subtotal,total,valorUnitario;
+	double subtotal,total;
 	do{
 		printf("\nDigite o código do produto: ");
 		scanf("%d",&codigo);
@@ -144,7 +144,6 @@ venda(){
 			if(produtos[x].codigo==codigo){
 				printf("\nCódigo: %d - Nome: %s - Valor Unitário: %0.2lf"
 				,produtos[x].codigo,produtos[x].nome,produtos[x].valorUnitario);
-				valorUnitario=produtos[x].valorUnitario;
 				achou=1;
 				break;
 			}else{
@@ -156,8 +155,13 @@ venda(){
 		}
 		printf("\nDigite a quantidade: ");
 		scanf("%d",&qtde);
-		subtotal=qtde*valorUnitario;
-		total+=subtotal;
+		if(produtos[x].estoque>0 && qtde<=produtos[x].estoque){
+			produtos[x].estoque-=qtde;
+			subtotal=qtde*produtos[x].valorUnitario;
+			total+=subtotal;
+		}else{
+			printf("\nSem produto em estoque\n");
+		}
 		printf("\nDeseja inserir mais algum produto: 1-sim 2-não:  ");
 		scanf("%d",&continuar);
 	}while(continuar!=2);

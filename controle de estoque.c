@@ -12,6 +12,7 @@ int sequencia=0,nvendas=0;
 double vendas[200];
 
 cadastrarProduto(){
+	FILE *arquivo;
 	system("cls");
 	produtos[sequencia].codigo=sequencia+1;
 	printf("\nDigite o nome do produto: ");
@@ -29,6 +30,13 @@ cadastrarProduto(){
 	printf("\nValor unitário: %0.2lf",produtos[sequencia].valorUnitario);
 	printf("\nEstoque: %d\n",produtos[sequencia].estoque);
 	sequencia++;
+	arquivo=fopen("produtos.txt","a");
+	fprintf(arquivo,"\nCódigo: %d\nNome: %s\nValor : %0.2lf\nEstoque: %d\n\n"
+	,produtos[sequencia].codigo
+	,produtos[sequencia].nome
+	,produtos[sequencia].valorUnitario
+	,produtos[sequencia].estoque);
+	fclose(arquivo);
 	system("pause");
 }
 listarProdutos(){

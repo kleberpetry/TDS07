@@ -38,7 +38,7 @@ cadastrarProduto(){
 	printf("\nEstoque: %d\n",produtos[sequencia].estoque);
 	sequencia++;
 	arquivo=fopen("produtos.txt","a");
-	fprintf(arquivo,"\nCódigo: %d\nNome: %s\nValor : %0.2lf\nEstoque: %d\n\n"
+	fprintf(arquivo,"%d %s %0.2lf"
 	,entrada.codigo
 	,entrada.nome
 	,entrada.valorUnitario
@@ -48,6 +48,20 @@ cadastrarProduto(){
 	system("pause");
 }
 listarProdutos(){
+	system("cls");
+	arquivo=fopen("produtos.txt","r");
+	fscanf(arquivo,"%d %s %lf %d",entrada.codigo,entrada.nome,entrada.valorUnitario,entrada.estoque);
+	printf("\n______________________________\n");
+	printf("\nCódigo: %d",entrada.codigo);
+	printf("\nNome: %s",entrada.nome);
+	printf("\nValor unitário: %0.2lf",entrada.valorUnitario);
+	printf("\nEstoque: %d\n",entrada.estoque);
+	
+	
+	
+	system("pause");
+}
+listarProdutos2(){
 	system("cls");
 	int x;
 	if(produtos[0].codigo>0){
@@ -219,8 +233,6 @@ venda(){
 }
 main(){
 	setlocale(LC_ALL, "Portuguese");
-	
-	
 	int x;
 	do{
 		system("cls");

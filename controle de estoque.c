@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<locale.h>
+#include<string.h>
 struct produto{
 	int codigo;
 	char nome[50];
@@ -8,21 +9,27 @@ struct produto{
 	int estoque;
 };
 struct produto produtos[200];
+struct produto entrada;
 int sequencia=0,nvendas=0;
 double vendas[200];
+FILE *arquivo;
 
 cadastrarProduto(){
-	FILE *arquivo;
+	
 	system("cls");
 	produtos[sequencia].codigo=sequencia+1;
+	entrada.codigo=produtos[sequencia].codigo;
 	printf("\nDigite o nome do produto: ");
 	fflush(stdin);
 	gets(produtos[sequencia].nome);// serve exclusivamente para string
+   	strcpy(entrada.nome,produtos[sequencia].nome);
 	printf("\nDigite o valor unitário: ");
 	scanf("%lf",&produtos[sequencia].valorUnitario);
+	entrada.valorUnitario=produtos[sequencia].valorUnitario;
 	fflush(stdin);
 	printf("\nDigite a quantidade do estoque inicial: ");
 	scanf("%d",&produtos[sequencia].estoque);//serve para ambos
+	entrada.estoque=produtos[sequencia].estoque;
 	system("cls");
 	printf("\nConfira o cadastro");
 	printf("\nCódigo: %d",produtos[sequencia].codigo);
@@ -32,11 +39,12 @@ cadastrarProduto(){
 	sequencia++;
 	arquivo=fopen("produtos.txt","a");
 	fprintf(arquivo,"\nCódigo: %d\nNome: %s\nValor : %0.2lf\nEstoque: %d\n\n"
-	,produtos[sequencia].codigo
-	,produtos[sequencia].nome
-	,produtos[sequencia].valorUnitario
-	,produtos[sequencia].estoque);
+	,entrada.codigo
+	,entrada.nome
+	,entrada.valorUnitario
+	,entrada.estoque);
 	fclose(arquivo);
+	
 	system("pause");
 }
 listarProdutos(){
@@ -211,6 +219,8 @@ venda(){
 }
 main(){
 	setlocale(LC_ALL, "Portuguese");
+	
+	
 	int x;
 	do{
 		system("cls");

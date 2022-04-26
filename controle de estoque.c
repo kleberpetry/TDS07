@@ -14,6 +14,7 @@ int sequencia=0,nvendas=0;
 double vendas[200];
 FILE *arquivo;
 
+
 cadastrarProduto(){
 	
 	system("cls");
@@ -38,30 +39,28 @@ cadastrarProduto(){
 	printf("\nEstoque: %d\n",produtos[sequencia].estoque);
 	sequencia++;
 	arquivo=fopen("produtos.txt","a");
-	fprintf(arquivo,"%d %s %0.2lf"
+	fprintf(arquivo,"codigo: %d nome: %s valor: %0.2lf estoque: %d"
 	,entrada.codigo
 	,entrada.nome
 	,entrada.valorUnitario
 	,entrada.estoque);
 	fclose(arquivo);
-	
 	system("pause");
 }
-listarProdutos(){
+listarProdutosArquivo(){
 	system("cls");
-	arquivo=fopen("produtos.txt","r");
-	fscanf(arquivo,"%d %s %lf %d",entrada.codigo,entrada.nome,entrada.valorUnitario,entrada.estoque);
-	printf("\n______________________________\n");
-	printf("\nCódigo: %d",entrada.codigo);
-	printf("\nNome: %s",entrada.nome);
-	printf("\nValor unitário: %0.2lf",entrada.valorUnitario);
-	printf("\nEstoque: %d\n",entrada.estoque);
+	FILE *leitura;
+	char saida[150];
+	leitura=fopen("produtos.txt","r");
 	
-	
-	
+	while(fgets(saida,150,leitura)!=NULL){
+		printf("%s\n",saida);
+	}
+	fclose(leitura);
 	system("pause");
 }
-listarProdutos2(){
+
+listarProdutosVetor(){
 	system("cls");
 	int x;
 	if(produtos[0].codigo>0){
@@ -252,7 +251,21 @@ main(){
 				ajusteCadastro();
 			break;
 			case 5:
-				listarProdutos();
+				system("cls");
+				printf("\nDigite 1 para leitura de arquivo\nDigite 2 para leitura do vetor: ");
+				int op;
+				scanf("%i",&op);
+				switch(op){
+					case 1:
+						listarProdutosArquivo();
+					break;
+					case 2:
+						listarProdutosVetor();
+					break;
+					default:
+						printf("opção inválida");
+				}
+				
 			break;
 			case 6:
 				buscarProduto();

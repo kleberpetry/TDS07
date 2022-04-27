@@ -53,9 +53,15 @@ listarProdutosArquivo(){
 	char saida[150];
 	leitura=fopen("produtos.txt","r");
 	
+	while(!feof(leitura)){
+		fscanf(leitura,"%d %s %lf %d",&entrada.codigo,&entrada.nome,&entrada.valorUnitario,&entrada.estoque);
+		printf("codigo: %d nome: %s- Valor: %0.2lf - Estoque: %d\n",entrada.codigo,entrada.nome,entrada.valorUnitario,entrada.estoque);
+	}
+	
+	/*
 	while(fgets(saida,150,leitura)!=NULL){
 		printf("%s\n",saida);
-	}
+	}*/
 	fclose(leitura);
 	system("pause");
 }

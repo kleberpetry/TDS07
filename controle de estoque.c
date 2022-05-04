@@ -141,64 +141,95 @@ entradaEstoque(){
 }
 ajusteEstoque(){
 	system("cls");
-	int codigo,x,estoque;
+	int codigo,x,estoque,achou=0;
 	printf("\nDigite o código do produto para ajuste de estoque: ");
 	scanf("%d",&codigo);
-	for(x=0;x<sequencia;x++){
-		if(produtos[x].codigo==codigo){
-			printf("\nCódigo: %d",produtos[x].codigo);
-			printf("\nNome: %s",produtos[x].nome);
-			printf("\nEstoque atual: %d\n\n",produtos[x].estoque);
-			printf("\nDigite a quantidade para ajuste em estoque: ");
-			scanf("%d",&estoque);
-			produtos[x].estoque=estoque;
-			printf("\nEstoque ajustado com sucesso!\n");
-			printf("\nNovo valor do estoque: %d\n",produtos[x].estoque);
-			break;
-		}else{
+	if(codigo!=0){
+		for(x=0;x<sequencia;x++){
+			if(produtos[x].codigo==codigo){
+				printf("\nCódigo: %d",produtos[x].codigo);
+				printf("\nNome: %s",produtos[x].nome);
+				printf("\nEstoque atual: %d\n\n",produtos[x].estoque);
+				printf("\nDigite a quantidade para ajuste em estoque: ");
+				scanf("%d",&estoque);
+				produtos[x].estoque=estoque;
+				printf("\nEstoque ajustado com sucesso!\n");
+				printf("\nNovo valor do estoque: %d\n",produtos[x].estoque);
+				achou=1;
+				break;
+			}else{
+				achou=0;
+			}
+		}
+		if(achou==0){
 			printf("\nProduto não encontrado\n");
 		}
+		
+	}else{
+		printf("\nRetornando ao menu\n");
+		system("pause");
+		return;
 	}
 	system("pause");
 }
 ajusteCadastro(){
 	system("cls");
-	int codigo,x,estoque;
+	int codigo,x,estoque,achou=0;
 	printf("\nDigite o código do produto para atualizar o cadastro: ");
 	scanf("%d",&codigo);
-	for(x=0;x<sequencia;x++){
-		if(produtos[x].codigo==codigo){
-			printf("\nCódigo: %d",produtos[x].codigo);
-			printf("\nNome: %s",produtos[x].nome);
-			printf("\nValor: %0.2lf",produtos[x].valorUnitario);
-			printf("\nDigite o nome do produto: ");
-			fflush(stdin);
-			gets(produtos[x].nome);
-			printf("\nDigite o valor unitário: ");
-			scanf("%lf",&produtos[x].valorUnitario);
-			printf("\nDados atualizados com sucesso!\n");
-			break;
-		}else{
-			printf("\nProduto não encontrado\n");
+	if(codigo!=0){
+		for(x=0;x<sequencia;x++){
+			if(produtos[x].codigo==codigo){
+				printf("\nCódigo: %d",produtos[x].codigo);
+				printf("\nNome: %s",produtos[x].nome);
+				printf("\nValor: %0.2lf",produtos[x].valorUnitario);
+				printf("\nDigite o nome do produto: ");
+				fflush(stdin);
+				gets(produtos[x].nome);
+				printf("\nDigite o valor unitário: ");
+				scanf("%lf",&produtos[x].valorUnitario);
+				printf("\nDados atualizados com sucesso!\n");
+				achou=1;
+				break;
+			}else{
+				achou=0;
+				printf("\nProduto não encontrado\n");
+			}
 		}
+		printf("\nProduto não encontrado\n");
+	}else{
+		printf("\nRetornando ao menu\n");
+		system("pause");
+		return;
 	}
 	system("pause");
 }
 buscarProduto(){
 	system("cls");
-	int x,codigo;
+	int x,codigo,achou=0;
 	printf("\nDigite o codigo do produto que deseja: ");
 	scanf("%d",&codigo);
-	for(x=0;x<sequencia;x++){
-		if(produtos[x].codigo==codigo){
-			printf("\nCodigo: %d",produtos[x].codigo);
-			printf("\nNome: %s",produtos[x].nome);
-			printf("\nValor: %0.2lf",produtos[x].valorUnitario);
-			printf("\nEstoque: %d\n",produtos[x].estoque);
-			break;
-		}else{
-			printf("\nProduto não encontrado!\n");
+	if(codigo!=0){
+		for(x=0;x<sequencia;x++){
+			if(produtos[x].codigo==codigo){
+				printf("\nCodigo: %d",produtos[x].codigo);
+				printf("\nNome: %s",produtos[x].nome);
+				printf("\nValor: %0.2lf",produtos[x].valorUnitario);
+				printf("\nEstoque: %d\n",produtos[x].estoque);
+				achou=1;
+				break;
+			}else{
+				achou=0;
+			}
 		}
+		if(achou==0){
+			printf("\nProduto não encontrado!\n");	
+		}
+		
+	}else{
+		printf("\nRetornando ao menu\n");
+		system("pause");
+		return;
 	}
 	system("pause");
 }
@@ -261,7 +292,15 @@ main(){
 	int x;
 	do{
 		system("cls");
-		printf("\nDigite 1 para cadastrar um produto\nDigite 2 para dar entrada em estoque\nDigite 3 para ajustar um estoque\nDigite 4 para ajustar o cadastro\nDigite 5 para listar todos os produtos\nDigite 6 para buscar um produto por codigo\nDigite 7 para realizar uma venda\nDigite sua opção: ");
+		printf("\nDigite 1 para cadastrar um produto");
+		printf("\nDigite 2 para dar entrada em estoque");
+		printf("\nDigite 3 para ajustar um estoque");
+		printf("\nDigite 4 para ajustar o cadastro");
+		printf("\nDigite 5 para listar todos os produtos");
+		printf("\nDigite 6 para buscar um produto por codigo");
+		printf("\nDigite 7 para realizar uma venda");
+		printf("\nDigite 8 para listar vendas");
+		printf("\nDigite sua opção: ");
 		scanf("%d",&x);
 		switch(x){
 			case 1:
@@ -278,7 +317,8 @@ main(){
 			break;
 			case 5:
 				system("cls");
-				printf("\nDigite 1 para leitura de arquivo\nDigite 2 para leitura do vetor: ");
+				printf("\nDigite 1 para leitura de arquivo");
+				printf("\nDigite 2 para leitura do vetor: ");
 				int op;
 				scanf("%i",&op);
 				switch(op){

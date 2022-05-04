@@ -16,35 +16,44 @@ FILE *arquivo;
 
 
 cadastrarProduto(){
-	
+	int igual;
+	char ok[5]={'0'};
 	system("cls");
 	produtos[sequencia].codigo=sequencia+1;
 	entrada.codigo=produtos[sequencia].codigo;
 	printf("\nDigite o nome do produto: ");
 	fflush(stdin);
 	gets(produtos[sequencia].nome);// serve exclusivamente para string
-   	strcpy(entrada.nome,produtos[sequencia].nome);
-	printf("\nDigite o valor unitário: ");
-	scanf("%lf",&produtos[sequencia].valorUnitario);
-	entrada.valorUnitario=produtos[sequencia].valorUnitario;
-	fflush(stdin);
-	printf("\nDigite a quantidade do estoque inicial: ");
-	scanf("%d",&produtos[sequencia].estoque);//serve para ambos
-	entrada.estoque=produtos[sequencia].estoque;
-	system("cls");
-	printf("\nConfira o cadastro");
-	printf("\nCódigo: %d",produtos[sequencia].codigo);
-	printf("\nNome: %s",produtos[sequencia].nome);
-	printf("\nValor unitário: %0.2lf",produtos[sequencia].valorUnitario);
-	printf("\nEstoque: %d\n",produtos[sequencia].estoque);
-	sequencia++;
-	arquivo=fopen("produtos.txt","a");
-	fprintf(arquivo,"codigo: %d nome: %s valor: %0.2lf estoque: %d"
-	,entrada.codigo
-	,entrada.nome
-	,entrada.valorUnitario
-	,entrada.estoque);
-	fclose(arquivo);
+   	igual=strcmp(produtos[sequencia].nome,ok);
+   	if(igual!=0){
+   	//if(produtos[sequencia].nome'0'){
+	   	strcpy(entrada.nome,produtos[sequencia].nome);
+		printf("\nDigite o valor unitário: ");
+		scanf("%lf",&produtos[sequencia].valorUnitario);
+		entrada.valorUnitario=produtos[sequencia].valorUnitario;
+		fflush(stdin);
+		printf("\nDigite a quantidade do estoque inicial: ");
+		scanf("%d",&produtos[sequencia].estoque);//serve para ambos
+		entrada.estoque=produtos[sequencia].estoque;
+		system("cls");
+		printf("\nConfira o cadastro");
+		printf("\nCódigo: %d",produtos[sequencia].codigo);
+		printf("\nNome: %s",produtos[sequencia].nome);
+		printf("\nValor unitário: %0.2lf",produtos[sequencia].valorUnitario);
+		printf("\nEstoque: %d\n",produtos[sequencia].estoque);
+		sequencia++;
+		arquivo=fopen("produtos.txt","a");
+		fprintf(arquivo,"codigo: %d nome: %s valor: %0.2lf estoque: %d"
+		,entrada.codigo
+		,entrada.nome
+		,entrada.valorUnitario
+		,entrada.estoque);
+		fclose(arquivo);
+	}else{
+		printf("\nRetornando ao menu\n");
+		system("pause");
+		return;
+	}
 	system("pause");
 }
 listarProdutosArquivo(){
@@ -99,24 +108,35 @@ listarVendas(){
 }
 entradaEstoque(){
 	system("cls");
-	int codigo,x,estoque;
+	int codigo,x,estoque,achou=0;
 	printf("\nDigite o código do produto para inserção de estoque: ");
 	scanf("%d",&codigo);
-	for(x=0;x<sequencia;x++){
-		if(produtos[x].codigo==codigo){
-			printf("\nCódigo: %d",produtos[x].codigo);
-			printf("\nNome: %s",produtos[x].nome);
-			printf("\nEstoque atual: %d\n\n",produtos[x].estoque);
-			printf("\nDigite a quantidade de entrada em estoque: ");
-			scanf("%d",&estoque);
-			produtos[x].estoque+=estoque;
-			printf("\nEstoque atualizado com sucesso!\n");
-			printf("\nNovo valor do estoque: %d\n",produtos[x].estoque);
-			break;
-		}else{
+	if(codigo!=0){
+		for(x=0;x<sequencia;x++){
+			if(produtos[x].codigo==codigo){
+				printf("\nCódigo: %d",produtos[x].codigo);
+				printf("\nNome: %s",produtos[x].nome);
+				printf("\nEstoque atual: %d\n\n",produtos[x].estoque);
+				printf("\nDigite a quantidade de entrada em estoque: ");
+				scanf("%d",&estoque);
+				produtos[x].estoque+=estoque;
+				printf("\nEstoque atualizado com sucesso!\n");
+				printf("\nNovo valor do estoque: %d\n",produtos[x].estoque);
+				achou=1;
+				break;
+			}else{
+				achou=0;
+			}
+		}
+		if(achou==0){
 			printf("\nProduto não encontrado\n");
 		}
+	}else{
+		printf("\nRetornando ao menu\n");
+		system("pause");
+		return;
 	}
+	
 	system("pause");
 }
 ajusteEstoque(){

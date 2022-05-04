@@ -1,2 +1,2 @@
 1 bala 20,00 40
-2 torrone 30,00 80
+2 torrone 30,00 80codigo: 1 nome: bala valor: 1,00 estoque: 50codigo: 1 nome: bala valor: 1,00 estoque: 20

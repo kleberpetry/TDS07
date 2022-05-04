@@ -14,7 +14,6 @@ int sequencia=0,nvendas=0;
 double vendas[200];
 FILE *arquivo;
 
-
 cadastrarProduto(){
 	int igual;
 	char ok[5]={'0'};
@@ -74,7 +73,6 @@ listarProdutosArquivo(){
 	fclose(leitura);
 	system("pause");
 }
-
 listarProdutosVetor(){
 	system("cls");
 	int x;
